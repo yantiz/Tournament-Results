@@ -14,7 +14,7 @@ CREATE DATABASE tournament;
 
 CREATE TABLE players (id SERIAL PRIMARY KEY, name TEXT);
 
-CREATE TABLE matches (winner INTEGER REFERENCES players (id), loser INTEGER REFERENCES players (id));
+CREATE TABLE matches (winner INTEGER REFERENCES players (id), loser INTEGER REFERENCES players (id), PRIMARY KEY (winner, loser));
 
 CREATE VIEW num_wins AS SELECT id, count(winner) AS wins FROM players LEFT JOIN matches ON id = winner GROUP BY id;
 
